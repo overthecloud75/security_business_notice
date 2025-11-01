@@ -5,12 +5,12 @@ from .db import save_links_to_db
 from utils import get_date_three_days_ago, get_today
 from configs import API_BASE_URL, REQUEST_PATH, API_KEY, SEARCH_KEYWORDS, logger
 
+
 NUM_ROWS = 200
 
-three_days_ago = get_date_three_days_ago().replace('-', '')
-today = get_today().replace('-', '')
-
 def get_nara_bid_info_by_page_no(page_no):
+    three_days_ago = get_date_three_days_ago().replace('-', '')
+    today = get_today().replace('-', '')
     bid_url = f'{API_BASE_URL}/{REQUEST_PATH}?serviceKey={API_KEY}&pageNo={page_no}&numOfRows={NUM_ROWS}&type=json&bidNtceBgnDt={three_days_ago}0000&bidNtceEndDt={today}2359'
     response = requests.get(bid_url)
     if response.status_code == 200:
