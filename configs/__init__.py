@@ -1,5 +1,5 @@
 from .config import *
-from .logging_config import ERROR_DIR, logger
+from .logging_config import logger
 try:
     if PRODUCTION_MODE:
         from .prod_config import *

@@ -1,0 +1,14 @@
+__pycache__/
+bin/
+include/
+lib/
+lib64/
+csv/
+database/
+logs/
+
+pyvenv.cfg
+.gitignore
+CHANGELOG.md
+README.md
+build.log

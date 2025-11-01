@@ -6,3 +6,5 @@ ACCOUNT = {
 }
 CC = ''
 TO = 'test@test.com'
+
+API_KEY = ''

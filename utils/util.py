@@ -5,6 +5,11 @@ import os
 from configs import logger
 
 
+def get_date_three_days_ago():
+    today = datetime.today()
+    one_week_ago = today - timedelta(days=3)
+    return one_week_ago.strftime('%Y-%m-%d') 
+
 def get_yesterday():
     today = datetime.today()
     yesterday = today - timedelta(days=1)

@@ -31,5 +31,10 @@ NOTICE_URLS = {
     ]
 }
 
+# 나라장터 API
+API_BASE_URL = 'https://apis.data.go.kr/1230000/ao/PubDataOpnStdService'
+REQUEST_PATH = '/getDataSetOpnStdBidPblancInfo'
+SEARCH_KEYWORDS = ['사이버보안', '사이버 보안', '모의해킹', '모의침투', '취약점', '보안장비', '침해사고']
+
 # etc
-DELIVERY_HOUR = 9
+DELIVERY_HOUR = 11

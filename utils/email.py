@@ -8,14 +8,24 @@ import os
 
 from configs import ACCOUNT, MAIL_SERVER, CC, TO, logger
 
+if type(TO) == list:
+    to = ', '.join(TO)
+else:
+    to = TO
+
+if type(CC) == list:
+    cc = ', '.join(CC)
+else:
+    cc = CC
+
 def send_email(html, subject='', attached_file=''):
     if html:
         mime_text = MIMEText(html, 'html')
         mimemsg = MIMEMultipart()
         mimemsg['From'] = 'BUSINESS CENTER' + '<' + ACCOUNT['email'] + '>'
-        mimemsg['To'] = TO
+        mimemsg['To'] = to
         if CC:
-            mimemsg['Cc'] = CC
+            mimemsg['Cc'] = cc
         mimemsg['Subject'] = subject
         mimemsg.attach(mime_text)
         part = None 
@@ -101,6 +111,7 @@ def get_email_html(subject, results=[]):
                     <th style='text-align: center; background-color: #f2f2f2; border: 1px solid #dddddd; padding: 8px;'>출처</th>
                     <th style='text-align: center; background-color: #f2f2f2; border: 1px solid #dddddd; padding: 8px;'>타입</th>
                     <th style='text-align: center; background-color: #f2f2f2; border: 1px solid #dddddd; padding: 8px;'>Title</th>
+                    <th style='text-align: center; background-color: #f2f2f2; border: 1px solid #dddddd; padding: 8px;'>수요</th>
                     <th style='text-align: center; background-color: #f2f2f2; border: 1px solid #dddddd; padding: 8px;'>Date</th>
                 </tr>
             </thead>
@@ -115,7 +126,8 @@ def get_email_html(subject, results=[]):
                     <td style='text-align: center; border: 1px solid #dddddd; padding: 8px; align-items: center;'>{result['kind']}</td>
                     <td style='border: 1px solid #dddddd; padding: 8px; align-items: center;'>
                         <a href={result['href']}>{result['title']}</a>
-                    </td>                                                                                     
+                    </td>
+                    <td style='text-align: center; border: 1px solid #dddddd; padding: 8px; align-items: center;'>{result['demand']}</td>                                                                                  
                     <td style='text-align: center; border: 1px solid #dddddd; padding: 8px; align-items: center;'>{result['date']}</td>
                 </tr>
             '''
