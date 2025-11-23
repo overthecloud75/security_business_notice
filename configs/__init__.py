@@ -7,3 +7,4 @@ try:
         from .dev_config import *
 except Exception:
     from .test_config import *
+from .tables import *

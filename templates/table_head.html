@@ -1,0 +1,8 @@
+<thead>
+    <tr>
+        <th class='text-center align-middle' data-sort='No'>No <i class='fas'></i></th>
+        {% for column in column_header %}
+        <th class='align-middle' data-sort='{{ column.accessor }}'>{{ column.header }} <i class='fas'></i></th>
+        {% endfor %}
+    </tr>
+</thead>

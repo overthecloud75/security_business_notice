@@ -22,4 +22,4 @@ ENV PATH="${PATH}:/home/security_business_notice/.local/bin"
 
 RUN pip3 install --extra-index-url ${REGISTRY} -r requirements.txt
 
-CMD ["python3", "main.py"]
+CMD ["uvicorn", "main:app", "--host", "0.0.0.0"]

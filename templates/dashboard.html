@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='d-flex' id='wrapper'>
+<div id='page-content-wrapper'>
+{% include 'datable_card.html' %}
+{% include 'paging.html' %}
+</div>
+<script src='/static/js/search.js'></script>
+{% endblock %}

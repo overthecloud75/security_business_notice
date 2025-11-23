@@ -1,0 +1,37 @@
+<div class='container-fluid mt-2'>
+    <div class='row'>
+        <div class='col-12'>
+            <div class='card'>
+                {% include 'card_header.html' %}
+                <div class='card-body'>
+                    <div class='table-responsive'>
+                        <table class='table table-hover' id='dataTable'>
+                            {% include 'table_head.html' %}
+                            <tbody>
+                                {% if data_list %}
+                                    {% for data in data_list %}
+                                    <tr class='data-row'>
+                                        <td class='text-center align-middle' id='td{{ loop.index0 }}'>{{ paging.offset + loop.index0 + 1}}
+                                        </td>
+                                        {% for column in column_header %}
+                                        {% if column['accessor'] == 'title' %}
+                                        <td class='align-middle'><a href="{{data['href']}}">{{ data[column['accessor']] }}</a></td>
+                                        {% else %}
+                                        <td class='align-middle'>{{ data[column['accessor']] }}</td>
+                                        {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                    {% endfor %}
+                                {% else %}
+                                    <tr>
+                                        <td colspan='{{ column_header|length + 1 }}' class='text-center'>{{ update_title + ' 정보가 없습니다.' }}</td>
+                                    </tr>
+                                {% endif %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

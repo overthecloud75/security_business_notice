@@ -1,0 +1,223 @@
+#wrapper {
+    overflow-x: hidden;
+    height: 100vh;
+    display: flex;
+}
+
+#sidebar-wrapper {
+    min-height: 100vh;
+    transition: margin .25s ease-out;
+    width: 10rem;
+    flex-shrink: 0;
+}
+
+#sidebar-wrapper .list-group {
+    padding-top: 0.5rem;
+}
+
+#sidebar-wrapper .list-group-item {
+    font-size: 0.9rem;
+}
+
+#sidebar-wrapper .list-group-item.active {
+    background-color: #3b82f6 !important;
+    border-color: #3b82f6 !important;
+}
+
+#page-content-wrapper {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+}
+
+body.toggled #wrapper {
+    margin-left: 0;
+}
+
+body.toggled #sidebar-wrapper {
+    margin-left: -10rem;
+}
+
+.sidebar-heading {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.sidebar-heading i {
+    color: #fca311;
+}
+
+.list-group-item {
+    padding: 0.8rem 1.25rem;
+    color: #adb5bd;
+    border: none;
+}
+
+.list-group-item.active,
+.list-group-item:hover {
+    background-color: #343a40 !important;
+    color: white !important;
+}
+
+.navbar .form-control {
+    width: 300px;
+    border-color: #e2e8f0;
+}
+
+.navbar .input-group-text {
+    border-color: #e2e8f0;
+}
+
+.card {
+    border-radius: 1rem;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.card-header {
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.card-title {
+    color: #495057;
+    font-weight: bold;
+}
+
+.icon-circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+}
+
+.badge {
+    font-weight: normal;
+}
+
+/* 테이블 컨테이너 개선 */
+.table-responsive {
+    max-height: calc(100vh - 230px);
+    overflow-y: auto;
+    border-radius: 0 0 1rem 1rem;
+}
+
+.table th,
+.table td {
+    border-top: none;
+    border-bottom: 1px solid #e2e8f0;
+    font-size: 0.7rem;
+}
+
+.table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.table {
+    margin-bottom: 0;
+    min-width: 100%;
+}
+
+.table th {
+    border-bottom: 2px solid #dee2e6;
+    cursor: pointer;
+    user-select: none;
+    position: sticky;
+    top: 0;
+    z-index: 10;
+}
+
+.table th:hover {
+    background-color: #e9ecef;
+}
+
+.sortable {
+    position: relative;
+}
+
+.sortable i {
+    margin-left: 5px;
+    opacity: 0.3;
+}
+
+.sortable:hover i {
+    opacity: 0.7;
+}
+
+.sortable.active i {
+    opacity: 1;
+}
+
+.data-row {
+    transition: background-color 0.2s;
+}
+
+.data-row:hover {
+    background-color: #f8f9fa;
+}
+
+/* 메인 컨텐츠 영역 개선 */
+.main-content {
+    flex: 1;
+    overflow-y: auto;
+    background: #f8fafc;
+}
+
+/* 컨테이너 개선 */
+.container-fluid {
+    max-width: 100%;
+    padding: 0 1rem;
+}
+
+/* 페이징 개선 */
+.pagination {
+    margin: 1rem 0;
+    justify-content: center;
+}
+
+/* 반응형 개선 */
+@media (max-width: 768px) {
+    #sidebar-wrapper {
+        width: 100%;
+        position: fixed;
+        z-index: 1000;
+        transform: translateX(-100%);
+    }
+    
+    #page-content-wrapper {
+        min-width: 100vw;
+    }
+    
+    .table-responsive {
+        max-height: calc(100vh - 200px);
+    }
+    
+    .navbar .form-control {
+        width: 100%;
+    }
+}
+
+/* 스크롤바 커스터마이징 */
+.table-responsive::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 4px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}

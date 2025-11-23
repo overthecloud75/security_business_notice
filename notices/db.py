@@ -56,19 +56,32 @@ def save_links_to_db(links):
     conn.close() 
     return saved_links
 
-def get_latest_links_from_db(limit=20):
-    """
-    date 최신순으로 limit개 링크를 가져오는 함수
-    """
+def get_links_from_db(limit=30, page=0, search=''):
     conn = sqlite3.connect(DB_FILE)
     c = conn.cursor()
+    offset = page * limit
     try:
-        c.execute(f"""
-            SELECT source, kind, href, title, demand, date, scraped_at
-            FROM {TABLE_NAME}
-            ORDER BY date DESC, title ASC
-            LIMIT ?
-        """, (limit,))
+        if search and len(search) > 1:
+            # search가 있는 경우
+            query = f"""
+                SELECT source, kind, href, title, demand, date, scraped_at
+                FROM {TABLE_NAME}
+                WHERE title LIKE ?
+                ORDER BY date DESC, title ASC
+                LIMIT ? OFFSET ?
+            """
+            params = (f'%{search}%', limit, offset)
+        else:
+            # search가 없는 경우
+            query = f"""
+                SELECT source, kind, href, title, demand, date, scraped_at
+                FROM {TABLE_NAME}
+                ORDER BY date DESC, title ASC
+                LIMIT ? OFFSET ?
+            """
+            params = (limit, offset)
+
+        c.execute(query, params)
         rows = c.fetchall()
 
         # 리스트 딕셔너리로 변환
@@ -85,7 +98,29 @@ def get_latest_links_from_db(limit=20):
             })
         return links
     except Exception as e:
-        logger.error(f"DB query error: {e}")
+        logger.error(f'DB query error: {e}')
         return []
+    finally:
+        conn.close()
+
+def get_total_count(search=''):
+    conn = sqlite3.connect(DB_FILE)
+    c = conn.cursor()
+    try:
+        if search and len(search) > 1:
+            query = f"SELECT COUNT(*) FROM {TABLE_NAME} WHERE title LIKE ?"
+            params = (f'%{search}%',)
+            c.execute(query, params)
+        else:
+            query = f"SELECT COUNT(*) FROM {TABLE_NAME}"
+            c.execute(query)
+        
+        total_count = c.fetchone()[0] 
+        return total_count
+
+    except Exception as e:
+        logger.error(f'DB count error: {e}')
+        return 0
+
     finally:
         conn.close()
